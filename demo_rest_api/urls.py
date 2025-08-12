@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import DemoRestApi, DemoRestApiItem
+# si estás usando la vista que guarda en Firebase:
+from landing_api.views import LandingAPI  # <-- opción A (recomendada)
 
 urlpatterns = [
-    path('', DemoRestApi.as_view(), name='demo-api-list'),
-    path('<str:id>/', DemoRestApiItem.as_view(), name='demo-api-item'),
+    path("", LandingAPI.as_view(), name="demo_rest_api_root"),       # /demo/rest/api/
+    path("index/", LandingAPI.as_view(), name="demo_rest_api_resources"),  # /demo/rest/api/index/
 ]
