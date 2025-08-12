@@ -25,7 +25,8 @@ def redirect_to_api(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("homepage/", include("templates.homepage.urls")),
+    #path("homepage/", include("templates.homepage.urls")),
+    path("homepage/", include("homepage.urls")),
     path("demo/rest/api/", include("demo_rest_api.urls")),
     path("", redirect_to_api),  # Agregado para redirigir desde /
 ]
