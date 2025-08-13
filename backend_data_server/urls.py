@@ -14,19 +14,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.shortcuts import redirect
 from django.urls import path, include
 from django.contrib import admin
 
-
 def redirect_to_api(request):
-    return redirect('/demo/rest/api/')
+    # antes redirigía a /demo/rest/api/ (que no existe)
+    return redirect('/demo/rest/api/index/')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     #path("homepage/", include("templates.homepage.urls")),
     path("homepage/", include("homepage.urls")),
     path("demo/rest/api/", include("demo_rest_api.urls")),
-    path("", redirect_to_api),  # Agregado para redirigir desde /
+    path("", redirect_to_api),
 ]
+

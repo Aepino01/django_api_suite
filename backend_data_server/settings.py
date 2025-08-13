@@ -12,6 +12,18 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import firebase_admin
+from firebase_admin import credentials
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Coloque la ruta relativa al archivo con la clave privada
+FIREBASE_CREDENTIALS_PATH = credentials.Certificate("secrets/landing-key.json")
+
+# Inicialice la conexión con el Realtime Database con la clave privada y la URL de referencia
+firebase_admin.initialize_app(FIREBASE_CREDENTIALS_PATH, {
+   'databaseURL': 'https://landingpage-d3fe2-default-rtdb.firebaseio.com/'
+})
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +38,7 @@ SECRET_KEY = "django-insecure-0demja9uklbqv8nmo7-3%j%^2*sf)h0w_%nwwuiqtocm7p8_pc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['Aepino01.pythonanywhere.com']
 
 
 # Application definition
@@ -43,8 +55,9 @@ INSTALLED_APPS = [
     "firebase_admin",
     "templates.homepage",
     "demo_rest_api",
-
-]
+    "landing_api",
+    "rest_framework",
+    ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -130,4 +143,4 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
